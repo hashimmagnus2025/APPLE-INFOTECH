@@ -1,6 +1,7 @@
 .sol {
   position: relative;
   z-index: 1;
+  overflow-x: clip; /* the vertical (mobile) layout lets decorative art bleed past the edge */
 }
 .sol__pin {
   position: relative;

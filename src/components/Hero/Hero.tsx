@@ -89,7 +89,10 @@ export function Hero() {
         const sx = gsap.quickTo(q('.hero__statement-wrap')[0], 'x', { duration: 1.4, ease: 'power3.out' })
         const sy = gsap.quickTo(q('.hero__statement-wrap')[0], 'y', { duration: 1.4, ease: 'power3.out' })
         const gx = gsap.quickTo(q('.hero__glow')[0], 'x', { duration: 1.8, ease: 'power3.out' })
+        const rootEl = root.current!
         const move = (e: PointerEvent) => {
+          rootEl.style.setProperty('--mx', `${e.clientX}px`)
+          rootEl.style.setProperty('--my', `${e.clientY}px`)
           const nx = (e.clientX / window.innerWidth) * 2 - 1
           const ny = (e.clientY / window.innerHeight) * 2 - 1
           tx(nx * -8)
@@ -120,6 +123,12 @@ export function Hero() {
           <span key={i} className="hero__gridline" />
         ))}
       </div>
+      {/* the same grid, brighter, revealed only around the pointer */}
+      <div className="hero__grid hero__grid--lit" aria-hidden="true">
+        {[0, 1, 2, 3].map((i) => (
+          <span key={i} className="hero__gridline" />
+        ))}
+      </div>
       <HeroVisual ref={visual} />
 
       <div className="hero__content">
@@ -145,7 +154,7 @@ export function Hero() {
             <p className="hero__statement">{hero.statement}</p>
           </div>
           <div className="hero__cta">
-            <Button label={hero.cta} href="#about" variant="outline" cursor="explore" />
+            <Button label={hero.cta} href="#about" variant="outline" />
           </div>
         </div>
       </div>

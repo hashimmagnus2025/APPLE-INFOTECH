@@ -348,6 +348,12 @@
   50% { transform: scale(1.06); }
 }
 
+@media (hover: none) {
+  .svc-stage__coord {
+    display: none;
+  }
+}
+
 /* ——— responsive ——— */
 @media (max-width: 899px) {
   .svc__head .rule {

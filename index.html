@@ -10,10 +10,27 @@
       name="description"
       content="Apple Infotech — technology that creates better ROI. A premium single-page concept experience."
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Apple Infotech — We Ensure Better ROI" />
+    <meta
+      property="og:description"
+      content="Technology chosen, shaped and delivered around one question: what does it return to your business?"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      /* paint the brand background before the bundle loads — no white flash */
+      html { background: #050505; }
+    </style>
   </head>
   <body>
+    <a class="skip-link" href="#about">Skip to content</a>
     <div id="root"></div>
+    <noscript>
+      <p style="padding:24px;color:#f5f7fa;font-family:sans-serif">
+        Apple Infotech — We Ensure Better ROI. This experience requires JavaScript.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

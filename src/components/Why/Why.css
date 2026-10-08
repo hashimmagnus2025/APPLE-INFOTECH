@@ -131,15 +131,18 @@
 .why__item:hover .why__d {
   color: rgba(245, 247, 250, 0.7);
 }
+/* the wrapper is animated by GSAP; hover motion lives on the inner icon so the two never fight */
 .why__go {
   grid-area: go;
   align-self: start;
   justify-self: end;
   padding-top: 1.4em;
+}
+.why__go svg {
   opacity: 0.4;
   transition: transform 0.7s var(--ease-out), opacity 0.4s;
 }
-.why__item:hover .why__go {
+.why__item:hover .why__go svg {
   opacity: 1;
   transform: translate(4px, -4px);
 }

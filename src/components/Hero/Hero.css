@@ -1,4 +1,6 @@
 .hero {
+  --mx: 70vw;
+  --my: 40vh;
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
@@ -45,6 +47,18 @@ html.is-loading .hero {
 }
 .hero__gridline:last-child {
   border-right: 1px solid rgba(255, 255, 255, 0.045);
+}
+.hero__grid--lit {
+  -webkit-mask-image: radial-gradient(280px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+  mask-image: radial-gradient(280px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+}
+.hero__grid--lit .hero__gridline {
+  border-color: rgba(175, 197, 227, 0.4);
+}
+@media (hover: none) {
+  .hero__grid--lit {
+    display: none;
+  }
 }
 
 .hero__lattice {
@@ -105,7 +119,7 @@ html.is-loading .hero {
   margin-top: clamp(28px, 5vh, 64px);
 }
 .hero__statement-wrap {
-  max-width: 31ch;
+  max-width: 34ch;
 }
 .hero__statement {
   font-size: clamp(1rem, 1.18vw, 1.28rem);

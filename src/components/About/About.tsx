@@ -101,10 +101,10 @@ export function About() {
             <path className="about__fig-line" d={markPaths.outer} stroke="rgba(255,255,255,0.35)" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
             <path className="about__fig-line" d={markPaths.inner} stroke="rgba(255,255,255,0.35)" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
             {markPaths.links.map((d, i) => (
-              <path key={'l' + i} className="about__fig-link" d={d} stroke="rgba(175,197,227,0.16)" strokeWidth={MARK.w} />
+              <path key={'l' + i} className="about__fig-link" d={d} stroke="rgba(175,197,227,0.1)" strokeWidth={MARK.w} />
             ))}
             {markPaths.pods.map((d, i) => (
-              <path key={'p' + i} className="about__fig-pod" d={d} stroke="rgba(255,255,255,0.1)" strokeWidth={MARK.w} />
+              <path key={'p' + i} className="about__fig-pod" d={d} stroke="rgba(255,255,255,0.055)" strokeWidth={MARK.w} />
             ))}
           </svg>
         </div>

@@ -213,6 +213,8 @@ export function NetworkCanvas() {
       last = now
       if (document.hidden) return
       if (canvas.style.opacity === '0') return
+      // a light section is covering the page — nothing to see, skip the work
+      if (document.documentElement.dataset.chrome === 'light') return
       draw(dt)
     }
 

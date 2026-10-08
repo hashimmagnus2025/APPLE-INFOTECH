@@ -137,6 +137,7 @@ ol {
 .page {
   position: relative;
   isolation: isolate;
+  overflow-x: clip;
 }
 .section {
   position: relative;
@@ -157,12 +158,21 @@ ol {
   background: var(--line-dark);
 }
 
-/* ——— Film grain ——— */
+/* ——— Film grain ———
+   The noise layer is oversized and jittered, so it lives inside a viewport-sized
+   clipped container; otherwise it widens the layout viewport on mobile browsers. */
 .grain {
   position: fixed;
-  inset: -10%;
+  inset: 0;
   z-index: 90;
   pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: -10%;
   opacity: 0.06;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   animation: grain 1.2s steps(6) infinite;
@@ -178,12 +188,12 @@ ol {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grain {
+  .grain::before {
     animation: none;
   }
 }
 @media (max-width: 720px) {
-  .grain {
+  .grain::before {
     opacity: 0.045;
   }
 }
@@ -214,13 +224,34 @@ ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.18) brightness(0.92);
   will-change: transform;
+}
+/* real photographs get the black-and-white grade; the procedural canvas is already graded */
+.mono-image > img {
+  filter: grayscale(1) contrast(1.18) brightness(0.92);
 }
 .mono-image__tint {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(175, 197, 227, 0.28), rgba(5, 5, 5, 0) 55%);
-  mix-blend-mode: screen;
+  background: linear-gradient(160deg, rgba(175, 197, 227, 0.2), rgba(5, 5, 5, 0) 55%);
   pointer-events: none;
+}
+
+/* ——— skip link ——— */
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -60px;
+  z-index: 400;
+  padding: 10px 16px;
+  background: var(--paper);
+  color: var(--black);
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: top 0.3s var(--ease-out);
+}
+.skip-link:focus {
+  top: 16px;
 }

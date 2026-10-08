@@ -204,7 +204,6 @@ export function Services() {
               <button
                 className="svc__row"
                 aria-expanded={active === i}
-                data-cursor="view"
                 onMouseEnter={() => choose(i, true)}
                 onFocus={() => choose(i)}
                 onClick={() => choose(i)}
@@ -232,7 +231,7 @@ export function Services() {
           <li className="svc__rule svc__rule--end" aria-hidden="true" />
         </ul>
 
-        <div ref={stage} className="svc-stage" aria-hidden="true">
+        <div ref={stage} className="svc-stage" aria-hidden="true" data-cursor="explore">
           <div className="svc-stage__inner">
             <div className="svc-stage__scenes">
               {SCENES.map((Scene, i) => (

@@ -66,7 +66,7 @@ export function CTA() {
         </h2>
         <p className="cta__text">{cta.text}</p>
         <div className="cta__btn">
-          <Button label={cta.button} href="mailto:?subject=Apple%20Infotech%20enquiry" variant="solid" size="lg" cursor="explore" />
+          <Button label={cta.button} href="mailto:?subject=Apple%20Infotech%20enquiry" variant="solid" size="lg" />
         </div>
       </div>
     </section>
