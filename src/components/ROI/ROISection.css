@@ -1,0 +1,351 @@
+.roi {
+  position: relative;
+  z-index: 2;
+  color: var(--black);
+}
+.roi__pin {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+}
+.roi__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  will-change: clip-path;
+}
+
+.roi__exit {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: var(--black);
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  pointer-events: none;
+}
+
+/* ——— giant ROI word ——— */
+.roi__word {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  display: block;
+  font-weight: 600;
+  font-size: min(44vw, 74vh);
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  will-change: transform;
+  padding: 0.04em 0.06em 0.1em 0;
+}
+.roi__word span {
+  display: block;
+}
+.roi__sweep {
+  position: absolute;
+  left: 4%;
+  right: 8%;
+  bottom: 0.015em;
+  height: 0.028em;
+  background: #fff;
+  transform-origin: left center;
+}
+.roi__arrow {
+  position: absolute;
+  right: -0.06em;
+  top: -0.04em;
+  width: 0.2em;
+  height: 0.2em;
+  display: block;
+}
+.roi__arrow svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.2;
+}
+
+/* ——— intro furniture ——— */
+.roi__intro-label,
+.roi__intro-foot {
+  position: absolute;
+  z-index: 4;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+.roi__intro-label {
+  top: calc(var(--nav-h) + 28px);
+  left: var(--gutter);
+}
+.roi__intro-foot {
+  bottom: 32px;
+  left: var(--gutter);
+  right: var(--gutter);
+  text-align: center;
+}
+.roi__intro-label b {
+  font-size: 8px;
+}
+
+/* ——— stage ——— */
+.roi__stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding-inline: var(--gutter);
+}
+.roi__left {
+  position: absolute;
+  left: var(--gutter);
+  top: calc(var(--nav-h) + 28px);
+  bottom: 56px;
+  width: min(28vw, 380px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.roi__eyebrow {
+  color: var(--steel);
+}
+.roi__title {
+  font-size: clamp(2.2rem, 3.8vw, 4.4rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+  margin-top: 18px;
+}
+.roi__title em {
+  color: var(--steel);
+  letter-spacing: -0.03em;
+}
+.roi__steps {
+  margin-top: auto;
+  border-top: 1px solid var(--line-dark);
+}
+.roi__step {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-dark);
+  opacity: 0.3;
+  transition: opacity 0.5s var(--ease-out), padding-left 0.6s var(--ease-out);
+}
+.roi__step .eyebrow {
+  color: var(--black);
+  width: 2.2em;
+}
+.roi__step-t {
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+}
+.roi__step.is-active {
+  opacity: 1;
+  padding-left: 10px;
+}
+
+/* ——— ring ——— */
+.roi__ring {
+  position: absolute;
+  left: 62%;
+  top: 50%;
+  width: min(66vh, 46vw);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+}
+.roi__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.roi__pod,
+.roi__link {
+  will-change: transform;
+}
+
+.roi__chip {
+  position: absolute;
+}
+.roi__chip-in {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 7px 12px 7px 10px;
+  background: var(--black);
+  color: var(--paper);
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+}
+.roi__chip .eyebrow {
+  color: var(--blue);
+}
+.roi__chip--left {
+  right: 96%;
+  top: 50%;
+  translate: 0 -50%;
+}
+.roi__chip--right {
+  left: 96%;
+  top: 50%;
+  translate: 0 -50%;
+}
+.roi__chip--top {
+  left: 50%;
+  bottom: 96%;
+  translate: -50% 0;
+}
+.roi__chip--bottom {
+  left: 50%;
+  top: 96%;
+  translate: -50% 0;
+}
+
+/* ——— captions ——— */
+.roi__caps {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 56px;
+  pointer-events: none;
+}
+.roi__cap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-width: 30ch;
+  /* sits to the right of the step list on desktop */
+  left: calc(min(28vw, 380px) + 3vw);
+}
+.roi__cap h3 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.roi__cap p {
+  color: rgba(5, 5, 5, 0.62);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 899px) {
+  .roi__ring {
+    left: 50%;
+    top: 43%;
+    width: min(70vw, 42vh);
+  }
+  .roi__left {
+    bottom: auto;
+    width: auto;
+    right: var(--gutter);
+  }
+  .roi__steps,
+  .roi__eyebrow {
+    display: none;
+  }
+  .roi__title {
+    margin-top: 0;
+    font-size: clamp(1.9rem, 8vw, 3rem);
+  }
+  .roi__cap {
+    left: 0;
+    max-width: 36ch;
+  }
+  .roi__caps {
+    bottom: 40px;
+  }
+  .roi__chip {
+    translate: none;
+  }
+  .roi__chip-in {
+    font-size: 0.78rem;
+    padding: 5px 9px;
+  }
+  /* chips sit in the free corners of the ring's square, clockwise from top-left */
+  .roi__chip--left {
+    left: -2%;
+    right: auto;
+    top: 2%;
+  }
+  .roi__chip--top {
+    left: auto;
+    right: -2%;
+    bottom: auto;
+    top: 2%;
+  }
+  .roi__chip--right {
+    left: auto;
+    right: -2%;
+    top: auto;
+    bottom: 2%;
+  }
+  .roi__chip--bottom {
+    left: -2%;
+    top: auto;
+    bottom: 2%;
+  }
+}
+
+/* ——— reduced motion: a static composed layout ——— */
+.roi--static .roi__pin {
+  height: auto;
+  min-height: 100svh;
+  padding-block: calc(var(--nav-h) + 40px) 80px;
+}
+.roi--static .roi__bg {
+  clip-path: none !important;
+}
+.roi--static .roi__exit {
+  display: none;
+}
+.roi--static .roi__word {
+  position: relative;
+  left: auto;
+  top: auto;
+  translate: none;
+  font-size: min(36vw, 40vh);
+  margin-inline: auto;
+  width: max-content;
+  mix-blend-mode: normal;
+  color: var(--black);
+}
+.roi--static .roi__intro-label,
+.roi--static .roi__intro-foot {
+  display: none;
+}
+.roi--static .roi__stage {
+  position: relative;
+  inset: auto;
+  display: grid;
+  gap: 32px;
+}
+.roi--static .roi__left,
+.roi--static .roi__ring,
+.roi--static .roi__caps {
+  position: relative;
+  left: auto;
+  top: auto;
+  translate: none;
+  width: auto;
+  bottom: auto;
+}
+.roi--static .roi__ring {
+  width: min(70vw, 420px);
+  margin-inline: auto;
+}
+.roi--static .roi__cap {
+  position: relative;
+  left: auto;
+  margin-bottom: 16px;
+}
+.roi--static .roi__step {
+  opacity: 1;
+}

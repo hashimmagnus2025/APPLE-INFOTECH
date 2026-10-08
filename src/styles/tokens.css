@@ -1,0 +1,35 @@
+:root {
+  /* ——— Brand palette (derived from the Apple Infotech logo) ——— */
+  --black: #050505;
+  --black-2: #0a0a0a;
+  --ink-2: #111214;
+  --white: #ffffff;
+  --paper: #f5f7fa;
+  --blue: #afc5e3; /* ice blue, sampled from the logo links */
+  --blue-soft: #b9c6d8;
+  --steel: #71839a;
+  --line: rgba(255, 255, 255, 0.12);
+  --line-strong: rgba(255, 255, 255, 0.26);
+  --line-dark: rgba(5, 5, 5, 0.14);
+  --text-dim: rgba(245, 247, 250, 0.62);
+  --text-faint: rgba(245, 247, 250, 0.38);
+
+  /* ——— Type ——— */
+  --f-display: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --f-serif: 'Instrument Serif', 'Times New Roman', serif;
+  --f-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* ——— Layout ——— */
+  --gutter: clamp(20px, 3.4vw, 60px);
+  --nav-h: 84px;
+
+  /* ——— Motion ——— */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --nav-h: 68px;
+  }
+}

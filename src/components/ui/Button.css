@@ -1,0 +1,141 @@
+.btn {
+  --btn-fg: var(--paper);
+  --btn-bg: transparent;
+  --btn-border: var(--line-strong);
+  --btn-fill: var(--paper);
+  --btn-fill-fg: var(--black);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--btn-border);
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: border-color 0.5s var(--ease-out), color 0.5s var(--ease-out);
+  will-change: transform;
+}
+.btn--md {
+  height: 46px;
+  padding: 0 22px;
+}
+.btn--lg {
+  height: 78px;
+  padding: 0 40px;
+  font-size: 13px;
+}
+.btn__fill {
+  position: absolute;
+  inset: -1px;
+  background: var(--btn-fill);
+  transform: translateY(101%);
+  transition: transform 0.6s var(--ease-out);
+}
+.btn__inner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  z-index: 1;
+}
+.btn__label {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  line-height: 1.5;
+  height: 1.5em;
+}
+.btn__text {
+  display: block;
+  transition: transform 0.6s var(--ease-out), color 0.4s;
+}
+.btn__text--clone {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  color: var(--btn-fill-fg);
+}
+.btn__arrow {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 12px;
+  overflow: hidden;
+}
+.btn__arrow svg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s var(--ease-out);
+}
+.btn__arrow-b {
+  transform: translateX(-160%);
+  color: var(--btn-fill-fg);
+}
+
+.btn:hover .btn__fill,
+.btn:focus-visible .btn__fill {
+  transform: translateY(0);
+}
+.btn:hover .btn__text,
+.btn:focus-visible .btn__text {
+  transform: translateY(-100%);
+}
+.btn:hover .btn__arrow-a {
+  transform: translateX(160%);
+}
+.btn:hover .btn__arrow-b {
+  transform: translateX(0);
+}
+.btn:hover {
+  border-color: var(--btn-fill);
+}
+
+.btn--solid {
+  --btn-bg: var(--paper);
+  --btn-fg: var(--black);
+  --btn-border: var(--paper);
+  --btn-fill: var(--blue);
+  --btn-fill-fg: var(--black);
+}
+.btn--solid .btn__text--clone {
+  color: var(--black);
+}
+
+/* on light sections */
+.section--light .btn,
+.btn--on-light {
+  --btn-fg: var(--black);
+  --btn-border: rgba(5, 5, 5, 0.3);
+  --btn-fill: var(--black);
+  --btn-fill-fg: var(--paper);
+}
+
+@media (max-width: 720px) {
+  .btn--lg {
+    height: 64px;
+    padding: 0 28px;
+    font-size: 12px;
+  }
+}
+
+@media (hover: none) {
+  .btn:hover .btn__fill {
+    transform: translateY(101%);
+  }
+  .btn:hover .btn__text {
+    transform: none;
+  }
+  .btn:hover .btn__arrow-a {
+    transform: none;
+  }
+  .btn:hover .btn__arrow-b {
+    transform: translateX(-160%);
+  }
+  .btn:active .btn__fill {
+    transform: translateY(0);
+  }
+}

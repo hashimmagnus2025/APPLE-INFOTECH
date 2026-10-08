@@ -1,0 +1,216 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: calc(var(--nav-h) + 24px) var(--gutter) 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* initial state while the preloader runs: a collapsed diamond (opened by <Preloader/>) */
+html.is-loading .hero {
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+
+.hero__glow {
+  position: absolute;
+  z-index: -2;
+  right: -12%;
+  top: 4%;
+  width: 78vw;
+  height: 90vh;
+  background:
+    radial-gradient(closest-side at 52% 46%, rgba(120, 150, 200, 0.26), rgba(90, 120, 170, 0.1) 46%, transparent 72%),
+    radial-gradient(closest-side at 40% 64%, rgba(175, 197, 227, 0.1), transparent 70%);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* vertical hairline columns — the quiet grid behind the composition */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-inline: var(--gutter);
+  pointer-events: none;
+}
+.hero__gridline {
+  border-left: 1px solid rgba(255, 255, 255, 0.045);
+  transform-origin: top center;
+}
+.hero__gridline:last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.hero__lattice {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding-bottom: clamp(88px, 13vh, 150px);
+  will-change: transform;
+}
+
+.hero__eyebrow {
+  margin-bottom: clamp(20px, 3.4vh, 38px);
+  display: flex;
+  align-items: center;
+}
+.hero__eyebrow b {
+  font-size: 8px;
+  animation: heroBlink 2.6s ease-in-out infinite;
+}
+@keyframes heroBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.hero__title {
+  font-weight: 500;
+  font-size: clamp(3.1rem, 9.1vw, 12.2rem);
+  line-height: 0.93;
+  letter-spacing: -0.045em;
+  color: var(--white);
+  will-change: transform;
+}
+.hero__title .mask {
+  padding-right: 0.08em;
+}
+.hero__accent {
+  font-size: 1.04em;
+  letter-spacing: -0.035em;
+  color: var(--blue);
+  padding-right: 0.04em;
+}
+.hero__dot {
+  color: var(--blue);
+}
+
+.hero__lower {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(28px, 4vw, 72px);
+  margin-top: clamp(28px, 5vh, 64px);
+}
+.hero__statement-wrap {
+  max-width: 31ch;
+}
+.hero__statement {
+  font-size: clamp(1rem, 1.18vw, 1.28rem);
+  line-height: 1.5;
+  color: var(--text-dim);
+  letter-spacing: -0.005em;
+}
+
+.hero__foot {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 0;
+  z-index: 2;
+}
+.hero__rule {
+  display: block;
+  height: 1px;
+  background: var(--line);
+  transform-origin: left center;
+}
+.hero__foot-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 64px;
+}
+.hero__tagline {
+  text-align: center;
+}
+.hero__index {
+  text-align: right;
+}
+.hero__scroll {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero__scroll-line {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 1px;
+  background: var(--line-strong);
+  overflow: hidden;
+}
+.hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  transform: translateX(-100%);
+  animation: scrollCue 2.4s var(--ease-io) infinite;
+}
+@keyframes scrollCue {
+  0% { transform: translateX(-100%); }
+  55% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+@media (max-width: 899px) {
+  .hero__glow {
+    right: -40%;
+    width: 130vw;
+    top: 0;
+    height: 62vh;
+  }
+  .hero__title {
+    font-size: clamp(3rem, 13.6vw, 7.5rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+  .hero__content {
+    padding-bottom: 96px;
+  }
+  .hero__lower {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+  }
+  .hero__statement-wrap {
+    max-width: 34ch;
+  }
+  .hero__tagline {
+    display: none;
+  }
+  .hero__foot-row {
+    grid-template-columns: 1fr 1fr;
+    height: 56px;
+  }
+  .hero__gridline:nth-child(2),
+  .hero__gridline:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 760px) {
+  .hero__title {
+    font-size: clamp(3rem, 8vw, 9.2rem);
+  }
+  .hero__content {
+    padding-bottom: 96px;
+  }
+}

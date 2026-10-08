@@ -1,0 +1,104 @@
+.rail {
+  --rail-fg: var(--paper);
+  --rail-dim: rgba(245, 247, 250, 0.25);
+  position: fixed;
+  right: clamp(10px, 1.1vw, 18px);
+  top: 0;
+  bottom: 0;
+  margin-block: auto;
+  z-index: 80;
+  height: min(46vh, 420px);
+  width: 16px;
+  color: var(--rail-fg);
+}
+html[data-chrome='light'] .rail {
+  --rail-fg: var(--black);
+  --rail-dim: rgba(5, 5, 5, 0.22);
+}
+.rail ul {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.rail__line,
+.rail__fill {
+  position: absolute;
+  right: 7px;
+  top: 0;
+  width: 1px;
+}
+.rail__line {
+  height: 100%;
+  background: var(--rail-dim);
+}
+.rail__fill {
+  background: var(--rail-fg);
+  transition: height 0.9s var(--ease-out);
+}
+.rail li {
+  position: relative;
+}
+.rail button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 16px;
+  height: 16px;
+}
+.rail__dia {
+  position: absolute;
+  right: 3px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--rail-fg);
+  background: var(--black);
+  transform: rotate(45deg) scale(0.7);
+  transition: transform 0.6s var(--ease-out), background 0.4s, opacity 0.4s;
+  opacity: 0.5;
+}
+html[data-chrome='light'] .rail__dia {
+  background: var(--paper);
+}
+.is-past .rail__dia {
+  opacity: 0.9;
+  background: var(--rail-fg) !important;
+}
+.is-active .rail__dia {
+  opacity: 1;
+  background: var(--blue) !important;
+  border-color: var(--blue);
+  transform: rotate(45deg) scale(1.15);
+}
+.rail__label {
+  position: absolute;
+  right: 26px;
+  white-space: nowrap;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.5s var(--ease-out), transform 0.6s var(--ease-out);
+  pointer-events: none;
+}
+.rail__label em {
+  font-style: normal;
+  opacity: 0.55;
+  margin-right: 6px;
+}
+.rail li:hover .rail__label {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1199px) {
+  .rail {
+    display: none;
+  }
+}

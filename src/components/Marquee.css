@@ -1,0 +1,46 @@
+.mq {
+  position: relative;
+  padding-block: clamp(40px, 8vh, 100px);
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+}
+.mq__inner {
+  will-change: transform;
+}
+.mq__row {
+  overflow: hidden;
+}
+.mq__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.mq__item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding-right: clamp(24px, 4vw, 64px);
+  font-weight: 500;
+  font-size: clamp(4.5rem, 14vw, 18rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+.mq__outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.45);
+}
+.mq__solid {
+  color: var(--paper);
+}
+.mq__dia {
+  display: block;
+  width: clamp(14px, 2vw, 28px);
+  height: clamp(14px, 2vw, 28px);
+  border: 1px solid var(--blue);
+  transform: rotate(45deg);
+  flex: none;
+}
+.mq__row--1 .mq__dia {
+  background: var(--blue);
+}
