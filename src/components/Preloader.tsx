@@ -57,6 +57,7 @@ export function Preloader() {
     }
     setClip()
 
+    let failsafe = 0
     const ctx = gsap.context(() => {
       gsap.set(q('.pre__outer, .pre__inner'), { drawSVG: '0%' })
       gsap.set(q('.pre__pod'), { drawSVG: '0%' })
@@ -67,31 +68,39 @@ export function Preloader() {
 
       const tl = gsap.timeline({
         defaults: { ease: 'power3.inOut' },
-        onComplete: finish,
+        onComplete: () => {
+          window.clearTimeout(failsafe)
+          finish()
+        },
       })
+      // never leave a visitor stuck behind the intro (e.g. a throttled background tab)
+      failsafe = window.setTimeout(() => tl.progress(1), 9000)
       if (seen) tl.timeScale(1.8)
-      tl.to(q('.pre__meta > *'), { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out' }, 0)
-        .to(q('.pre__outer, .pre__inner'), { drawSVG: '100%', duration: 1.5 }, 0.1)
-        .to(q('.pre__link'), { drawSVG: '100%', duration: 1.1, stagger: 0.12 }, 0.9)
-        .to(q('.pre__pod'), { drawSVG: '100%', duration: 1.0, stagger: 0.12 }, 1.0)
+      tl.to(q('.pre__meta > *'), { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, 0)
+        .to(q('.pre__outer, .pre__inner'), { drawSVG: '100%', duration: 1.1 }, 0.1)
+        .to(q('.pre__link'), { drawSVG: '100%', duration: 0.8, stagger: 0.1 }, 0.7)
+        .to(q('.pre__pod'), { drawSVG: '100%', duration: 0.8, stagger: 0.1 }, 0.8)
         .to(counter, {
             v: 100,
-            duration: 2.2,
+            duration: 1.8,
             ease: 'power2.inOut',
             onUpdate: () => {
               countEl.textContent = String(Math.round(counter.v)).padStart(3, '0')
             },
           }, 0)
-        .to(q('.pre__outer, .pre__inner'), { opacity: 0, duration: 0.5 }, 2.3)
-        .to(q('.pre__meta'), { opacity: 0, y: -10, duration: 0.5, ease: 'power2.in' }, 2.3)
+        .to(q('.pre__outer, .pre__inner'), { opacity: 0, duration: 0.4 }, 1.8)
+        .to(q('.pre__meta'), { opacity: 0, y: -10, duration: 0.4, ease: 'power2.in' }, 1.8)
         // diamond opens onto the hero while the mark scales through the viewfinder
-        .to(q('.pre__mark'), { scale: 9, duration: 1.7, ease: 'power3.in' }, 2.45)
-        .to(q('.pre__mark'), { opacity: 0, duration: 0.5, ease: 'power1.in' }, 3.25)
-        .add(() => completeIntro(), 2.75)
-        .to(diamond, { L: maxL, duration: 1.55, ease: 'power3.inOut', onUpdate: setClip }, 2.65)
+        .to(q('.pre__mark'), { scale: 9, duration: 1.5, ease: 'power3.in' }, 1.95)
+        .to(q('.pre__mark'), { opacity: 0, duration: 0.45, ease: 'power1.in' }, 2.75)
+        .add(() => completeIntro(), 2.2)
+        .to(diamond, { L: maxL, duration: 1.4, ease: 'power3.inOut', onUpdate: setClip }, 2.1)
     }, el)
 
-    return () => ctx.revert()
+    return () => {
+      window.clearTimeout(failsafe)
+      ctx.revert()
+    }
   }, [])
 
   return (

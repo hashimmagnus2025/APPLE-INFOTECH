@@ -131,8 +131,9 @@
   font-weight: 600;
   font-size: clamp(4rem, 15.2vw, 24rem);
   letter-spacing: -0.065em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  color: #070808;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
+  paint-order: stroke fill; /* fill covers the inner half of the stroke, hiding overlapping glyph contours */
 }
 
 @media (max-width: 899px) {

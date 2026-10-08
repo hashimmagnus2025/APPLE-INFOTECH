@@ -93,7 +93,7 @@ html.is-loading .hero {
 
 .hero__title {
   font-weight: 500;
-  font-size: clamp(3.1rem, 9.1vw, 12.2rem);
+  font-size: clamp(2.6rem, min(9.1vw, 17vh), 12.2rem);
   line-height: 0.93;
   letter-spacing: -0.045em;
   color: var(--white);
@@ -188,7 +188,7 @@ html.is-loading .hero {
     height: 62vh;
   }
   .hero__title {
-    font-size: clamp(3rem, 13.6vw, 7.5rem);
+    font-size: clamp(2.6rem, min(13.6vw, 15.5vh), 7.5rem);
   }
 }
 

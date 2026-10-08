@@ -30,11 +30,16 @@ export function ScrollRail() {
       { rootMargin: '-50% 0px -50% 0px' },
     )
     secs.forEach((s) => io.observe(s))
+    // the footer belongs to the final section (Contact)
+    const footer = document.querySelector<HTMLElement>('footer')
+    const fio = new IntersectionObserver(([e]) => e.isIntersecting && setActive(secs.length - 1), { rootMargin: '-50% 0px -50% 0px' })
+    if (footer) fio.observe(footer)
     const off = onIntroDone(() => {
       gsap.to(nav.current, { opacity: 1, x: 0, duration: 1.2, delay: 1.2, ease: 'power3.out', startAt: { x: 16 } })
     })
     return () => {
       io.disconnect()
+      fio.disconnect()
       off()
     }
   }, [])
